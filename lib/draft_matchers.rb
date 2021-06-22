@@ -161,5 +161,5 @@ class DraftMatchers
     failure_message do |actual|
       "expected #{actual.tag_name} to have a child '#{expected.tag_name}' element, but couldn't find one."
     end
-  end  
+  end
 end
