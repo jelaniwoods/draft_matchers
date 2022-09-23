@@ -178,4 +178,16 @@ class DraftMatchers
       "Expected label’s for attribute(\"#{for_attribute}\") to match an <input> tags id attribute exactly once, but found 0 or more than 1 match (#{all_input_ids})."
     end
   end
+
+  RSpec::Matchers.define :have_for_attribute do
+    for_attribute = nil
+
+    match do |actual|
+      for_attribute = actual[:for]
+      !for_attribute.nil?
+    end
+    failure_message do |actual|
+      "Expected label's for attribute to be set to a non empty value, was '#{for_attribute}' instead."
+    end
+  end
 end
