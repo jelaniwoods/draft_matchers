@@ -162,4 +162,20 @@ class DraftMatchers
       "expected #{actual.tag_name} to have a child '#{expected.tag_name}' element, but couldn't find one."
     end
   end
+
+  RSpec::Matchers.define :have_matching_input do
+    for_attribute = nil
+    all_input_ids = []
+    match do |actual|
+      for_attribute = actual[:for]
+
+      all_inputs = page.all("input")
+
+      all_input_ids = all_inputs.map { |input| input[:id] }
+      all_input_ids.one?(for_attribute)
+    end
+    failure_message do |actual|
+      "Expected label’s for attribute(\"#{for_attribute}\") to match an <input> tags id attribute exactly once, but found 0 or more than 1 match (#{all_input_ids})."
+    end
+  end
 end
