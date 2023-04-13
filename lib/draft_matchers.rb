@@ -12,6 +12,7 @@ class DraftMatchers
   # See color examples here https://github.com/halostatue/color/blob/master/lib/color/rgb/colors.rb#L9
   RSpec::Matchers.define :have_color do |expected_color|
     actual_color = nil
+    color_array = nil
     match do |actual|
       rgba_color_value = actual.native.style("color")
       color_number_values = rgba_color_value.gsub(/rgba?\(/, "").split(",")
@@ -19,12 +20,16 @@ class DraftMatchers
       red_value = color_number_values[0].to_i
       green_value = color_number_values[1].to_i
       blue_value = color_number_values[2].to_i
-      color_array = ColorNamer.name_from_rgb(red_value, green_value, blue_value)
+      color_array = ColorNamer.name_from_rgb(red_value, green_value, blue_value).map do |color_name|
+        color_name.gsub(/\s/, "").downcase
+      end.uniq
       actual_color = color_array.last.downcase
+      p color_array.include? expected_color
+      p expected_color.downcase
       expected_color.downcase == actual_color
     end
     failure_message do |actual|
-      "expected #{actual.tag_name} to have a text color of '#{expected_color}', but was '#{actual_color}' instead'."
+      "expected #{actual.tag_name} to have a text color of '#{expected_color}', but was either #{color_array.insert(-2, "or").join(" ")} instead'."
     end
   end
 
