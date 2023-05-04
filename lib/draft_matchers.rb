@@ -9,7 +9,6 @@ class DraftMatchers
     end
   end
 
-  # See color examples here https://github.com/halostatue/color/blob/master/lib/color/rgb/colors.rb#L9
   RSpec::Matchers.define :have_color do |expected_color|
     actual_color = nil
     match do |actual|
@@ -151,7 +150,6 @@ class DraftMatchers
     end
   end
 
-  # expect(“nav”).to have_child(“a”)
   RSpec::Matchers.define :have_child do |expected|
 
     match do |actual|
