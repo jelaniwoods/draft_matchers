@@ -1,7 +1,7 @@
 require 'rspec/expectations'
 require 'color_namer'
 
-class DraftMatchers
+module DraftMatchers
 
   RSpec::Matchers.define :be_a_multiple_of do |expected|
     match do |actual|

@@ -4,7 +4,7 @@
 
 Install gem
 ```rb
-gem 'draft_matchers', '~> 0.0.1'
+gem 'draft_matchers'
 ```
 or
 ```

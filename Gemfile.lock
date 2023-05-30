@@ -1,3 +1,11 @@
+PATH
+  remote: .
+  specs:
+    draft_matchers (0.0.1.2)
+      capybara
+      color_namer
+      rspec
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,6 +33,7 @@ GEM
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rake (12.3.3)
     regexp_parser (2.1.1)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -48,7 +57,9 @@ PLATFORMS
 DEPENDENCIES
   capybara
   color_namer
+  draft_matchers!
+  rake (~> 12.0)
   rspec
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
